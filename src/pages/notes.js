@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CreateNote from "../components/modals/CreateNote";
+import DeleteNote from "../components/modals/DeleteNote";
 import DeleteNotebook from "../components/modals/DeleteNotebook";
 import EditNotebook from "../components/modals/EditNotebook";
 import AddNote from "../components/notes/AddNote";
@@ -19,6 +20,7 @@ export default function Notes() {
   const [editNote, setEditNote] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [note, setNote] = useState("");
+  const [selectNoteIdForDeletion, setSelectNoteIdForDeletion] = useState("");
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -67,7 +69,12 @@ export default function Notes() {
       <section>
         <div className="grid grid-cols-3">
           {notes.map((note) => (
-            <Note key={note.docId} {...note} setDeleteNote={setDeleteNote} />
+            <Note
+              key={note.docId}
+              {...note}
+              setDeleteNote={setDeleteNote}
+              setSelectNoteIdForDeletion={setSelectNoteIdForDeletion}
+            />
           ))}
 
           <AddNote createNote={createNote} setCreateNote={setCreateNote} />
@@ -81,6 +88,11 @@ export default function Notes() {
           createNoteModal={createNote}
           setCreateNoteModal={setCreateNote}
           notebookId={notebookId}
+        />
+        <DeleteNote
+          docId={selectNoteIdForDeletion}
+          deleteNote={deleteNote}
+          setDeleteNote={setDeleteNote}
         />
       </section>
     </>

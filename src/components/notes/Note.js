@@ -1,6 +1,12 @@
 import parse from "html-react-parser";
 
-export default function Note({ noteTitle, note, setDeleteNote }) {
+export default function Note({
+  docId,
+  noteTitle,
+  note,
+  setDeleteNote,
+  setSelectNoteIdForDeletion,
+}) {
   return (
     <div className="bg-blue-400 w-1/4 m-2 col-span-1">
       <h2>{noteTitle}</h2>
@@ -9,7 +15,14 @@ export default function Note({ noteTitle, note, setDeleteNote }) {
 
       <span className="flex space-x-4">
         <button>Edit</button>
-        <button onClick={() => setDeleteNote(true)}>Delete</button>
+        <button
+          onClick={() => {
+            setDeleteNote(true);
+            setSelectNoteIdForDeletion(docId);
+          }}
+        >
+          Delete
+        </button>
       </span>
     </div>
   );
