@@ -1,5 +1,6 @@
 import Modal from "react-modal";
 import firebase from "firebase";
+import ReactQuill from "react-quill";
 
 const customStyles = {
   content: {
@@ -64,21 +65,26 @@ export default function CreateNote({
           <h2>Create Note</h2>
           <button onClick={closeModal}>close</button>
         </span>
-        <div>I am a modal</div>
 
-        <form onSubmit={noteCreateHandler} className="flex flex-col ">
+        <form onSubmit={noteCreateHandler} className="flex flex-col">
+          <label htmlFor="title">Note Title</label>
           <input
             type="text"
+            id="title"
             placeholder="Enter note title"
             value={noteTitle}
             onChange={({ target }) => setNoteTitle(target.value)}
+            className="mb-4"
           />
-          <input
-            type="text"
-            placeholder="Enter note"
-            value={note}
-            onChange={({ target }) => setNote(target.value)}
-          />
+          <label htmlFor="note">Note</label>
+          <div className="h-60">
+            <ReactQuill
+              id="note"
+              value={note}
+              onChange={(e) => setNote(e)}
+              className="h-4/5"
+            />
+          </div>
 
           <button type="submit">Create Notebook</button>
         </form>
