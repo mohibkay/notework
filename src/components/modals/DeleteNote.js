@@ -36,17 +36,33 @@ export default function DeleteNote({ docId, deleteNote, setDeleteNote }) {
         style={customStyles}
         contentLabel="Delete Notebook Modal"
       >
-        <h2 className="text-red-500">Delete Note</h2>
-        <button onClick={closeModal}>close</button>
-        <div>
-          <p>Are you sure you want to delete the note?</p>
+        <span className="modal-header">
+          <h2 className="text-xl">Delete Note</h2>
+          <button onClick={closeModal}>
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+        </span>
 
-          <span className="space-x-3">
-            <button onClick={DeleteNote} className="text-red-500">
-              Yes
-            </button>
-            <button onClick={closeModal}>Cancel</button>
-          </span>
+        <div>
+          <p className="text-lg">Are you sure you want to delete the note?</p>
+
+          <button onClick={DeleteNote} className="button w-full mt-5">
+            Delete
+          </button>
         </div>
       </Modal>
     </div>
