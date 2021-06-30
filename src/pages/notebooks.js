@@ -25,8 +25,8 @@ export default function Notebooks() {
   return (
     <>
       <Navbar />
-      <div className="max-w-screen-lg mx-auto">
-        <span className="flex items-center space-x-4">
+      <div className="max-w-screen-lg mx-auto mb-12">
+        <span className="flex items-center space-x-2">
           <h2 className="font-semibold text-2xl my-6">My Notebooks</h2>
           <svg
             onClick={() => setIsModalOpen(true)}
