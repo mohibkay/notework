@@ -5,7 +5,10 @@ export default function Note({
   noteTitle,
   note,
   setDeleteNote,
-  setSelectNoteIdForDeletion,
+  setEditNote,
+  setSelectNoteId,
+  setNoteTitle,
+  setNote,
 }) {
   return (
     <div className="bg-blue-400 w-1/4 m-2 col-span-1">
@@ -14,11 +17,20 @@ export default function Note({
       <div>{parse(note)}</div>
 
       <span className="flex space-x-4">
-        <button>Edit</button>
+        <button
+          onClick={() => {
+            setEditNote(true);
+            setSelectNoteId(docId);
+            setNoteTitle(noteTitle);
+            setNote(note);
+          }}
+        >
+          Edit
+        </button>
         <button
           onClick={() => {
             setDeleteNote(true);
-            setSelectNoteIdForDeletion(docId);
+            setSelectNoteId(docId);
           }}
         >
           Delete

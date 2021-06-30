@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import CreateNote from "../components/modals/CreateNote";
 import DeleteNote from "../components/modals/DeleteNote";
 import DeleteNotebook from "../components/modals/DeleteNotebook";
+import EditNote from "../components/modals/EditNote";
 import EditNotebook from "../components/modals/EditNotebook";
 import AddNote from "../components/notes/AddNote";
 import Note from "../components/notes/Note";
@@ -20,7 +21,7 @@ export default function Notes() {
   const [editNote, setEditNote] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [note, setNote] = useState("");
-  const [selectNoteIdForDeletion, setSelectNoteIdForDeletion] = useState("");
+  const [selectNoteId, setSelectNoteId] = useState("");
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -73,7 +74,10 @@ export default function Notes() {
               key={note.docId}
               {...note}
               setDeleteNote={setDeleteNote}
-              setSelectNoteIdForDeletion={setSelectNoteIdForDeletion}
+              setSelectNoteId={setSelectNoteId}
+              setEditNote={setEditNote}
+              setNoteTitle={setNoteTitle}
+              setNote={setNote}
             />
           ))}
 
@@ -89,8 +93,18 @@ export default function Notes() {
           setCreateNoteModal={setCreateNote}
           notebookId={notebookId}
         />
+
+        <EditNote
+          note={note}
+          setNote={setNote}
+          noteTitle={noteTitle}
+          setNoteTitle={setNoteTitle}
+          editNoteModal={editNote}
+          setEditNoteModal={setEditNote}
+          selectNoteId={selectNoteId}
+        />
         <DeleteNote
-          docId={selectNoteIdForDeletion}
+          docId={selectNoteId}
           deleteNote={deleteNote}
           setDeleteNote={setDeleteNote}
         />
