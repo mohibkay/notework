@@ -3,7 +3,7 @@ module.exports = {
   darkMode: false,
   theme: {
     colors: {
-      primary: "#3498db",
+      primary: "#eb746a",
       white: "#ffffff",
       gray: {
         base: "#616161",
@@ -15,6 +15,7 @@ module.exports = {
       red: {
         primary: "#ed4956",
       },
+      maroon: "#db4c3f",
     },
     extend: {},
   },
