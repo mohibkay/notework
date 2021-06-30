@@ -4,7 +4,7 @@ import Notebook from "../components/notebooks/Notebook";
 import { firebase } from "../lib/firebase";
 
 export default function Notebooks() {
-  const [notebooks, setNotebooks] = useState([]);
+  const [notebooks, setNotebooks] = useState(null);
   const [notebookName, setNotebookName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,15 +33,21 @@ export default function Notebooks() {
         </p>
       </span>
       <div className="grid grid-cols-4">
-        {notebooks.map((notebook) => (
-          <Notebook key={notebook.docId} {...notebook} />
-        ))}
-        <AddNotebook
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          notebookName={notebookName}
-          setNotebookName={setNotebookName}
-        />
+        {notebooks?.length > 0
+          ? notebooks?.map((notebook) => (
+              <Notebook key={notebook.docId} {...notebook} />
+            ))
+          : notebooks
+          ? null
+          : "Loading........"}
+        {notebooks && (
+          <AddNotebook
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            notebookName={notebookName}
+            setNotebookName={setNotebookName}
+          />
+        )}
       </div>
     </div>
   );
