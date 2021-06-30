@@ -15,7 +15,7 @@ export default function Notes() {
   const [editNotebook, setEditNotebook] = useState(false);
   const { notebookId, notebookName } = useParams();
 
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(null);
   const [createNote, setCreateNote] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [editNote, setEditNote] = useState(false);
@@ -46,7 +46,7 @@ export default function Notes() {
 
   return (
     <>
-      <div className="">
+      <div className="max-w-screen-lg mx-auto mt-8">
         <span className="flex space-x-3">
           <h2>{notebook.notebookName}</h2>
           <button onClick={() => setEditNotebook(true)}>Edit</button>
@@ -67,21 +67,27 @@ export default function Notes() {
         />
       </div>
 
-      <section>
-        <div className="grid grid-cols-3">
-          {notes.map((note) => (
-            <Note
-              key={note.docId}
-              {...note}
-              setDeleteNote={setDeleteNote}
-              setSelectNoteId={setSelectNoteId}
-              setEditNote={setEditNote}
-              setNoteTitle={setNoteTitle}
-              setNote={setNote}
-            />
-          ))}
+      <section className="max-w-screen-lg mx-auto">
+        <div className="grid grid-cols-3 gap-8">
+          {notes?.length > 0 ? (
+            notes?.map((note) => (
+              <Note
+                key={note.docId}
+                {...note}
+                setDeleteNote={setDeleteNote}
+                setSelectNoteId={setSelectNoteId}
+                setEditNote={setEditNote}
+                setNoteTitle={setNoteTitle}
+                setNote={setNote}
+              />
+            ))
+          ) : notes ? null : (
+            <p>Loading...</p>
+          )}
 
-          <AddNote createNote={createNote} setCreateNote={setCreateNote} />
+          {notes && (
+            <AddNote createNote={createNote} setCreateNote={setCreateNote} />
+          )}
         </div>
 
         <CreateNote

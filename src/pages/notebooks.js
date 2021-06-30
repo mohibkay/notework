@@ -22,7 +22,7 @@ export default function Notebooks() {
   }, []);
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <span className="flex items-center space-x-4">
         <h2>notebooks</h2>
         <p
@@ -32,7 +32,7 @@ export default function Notebooks() {
           +
         </p>
       </span>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 gap-10">
         {notebooks?.length > 0
           ? notebooks?.map((notebook) => (
               <Notebook key={notebook.docId} {...notebook} />
@@ -40,6 +40,7 @@ export default function Notebooks() {
           : notebooks
           ? null
           : "Loading........"}
+
         {notebooks && (
           <AddNotebook
             isModalOpen={isModalOpen}
