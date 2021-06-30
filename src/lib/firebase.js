@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import Firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
@@ -11,6 +11,8 @@ const config = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-firebase.initializeApp(config);
+const firebase = Firebase.initializeApp(config);
+const { FieldValue } = Firebase.firestore;
+const auth = firebase.auth();
 
-export default firebase;
+export { firebase, FieldValue, auth };

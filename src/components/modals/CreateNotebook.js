@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import firebase from "firebase";
+import { firebase, FieldValue } from "../../lib/firebase";
 
 const customStyles = {
   content: {
@@ -39,7 +39,7 @@ export default function CreateNotebook({
       firebase.firestore().collection("notebooks").add({
         notebookName,
         userId: "fdklaadfawewzc",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: FieldValue.serverTimestamp(),
       });
       setNotebookName("");
       setIsModalOpen(false);

@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import firebase from "firebase";
+import { firebase } from "../../lib/firebase";
 
 const customStyles = {
   content: {

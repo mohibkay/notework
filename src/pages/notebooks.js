@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AddNotebook from "../components/notebooks/AddNotebook";
 import Notebook from "../components/notebooks/Notebook";
-import firebase from "../lib/firebase";
+import { firebase } from "../lib/firebase";
 
 export default function Notebooks() {
   const [notebooks, setNotebooks] = useState([]);

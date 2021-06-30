@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import firebase from "firebase";
+import { firebase, FieldValue } from "../../lib/firebase";
 import ReactQuill from "react-quill";
 
 const customStyles = {
@@ -35,7 +35,7 @@ export default function CreateNote({
         noteTitle,
         notebookId,
         userId: "fdklaadfawewzc",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: FieldValue.serverTimestamp(),
       });
       setNoteTitle("");
       setNote("");

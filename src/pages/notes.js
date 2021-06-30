@@ -7,7 +7,7 @@ import EditNote from "../components/modals/EditNote";
 import EditNotebook from "../components/modals/EditNotebook";
 import AddNote from "../components/notes/AddNote";
 import Note from "../components/notes/Note";
-import firebase from "../lib/firebase";
+import { firebase } from "../lib/firebase";
 
 export default function Notes() {
   const [notebook, setNotebook] = useState("");

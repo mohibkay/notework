@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import firebase from "firebase";
+import { firebase, FieldValue } from "../../lib/firebase";
 import { useState } from "react";
 
 const customStyles = {
@@ -32,7 +32,7 @@ export default function EditNotebook({
       firebase.firestore().collection("notebooks").doc(docId).update({
         notebookName,
         userId: "fdklaadfawewzc",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: FieldValue.serverTimestamp(),
       });
       setNotebookName("");
       setEditNotebook(false);
