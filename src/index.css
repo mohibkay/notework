@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply bg-primary text-white p-1 rounded-sm mt-2 focus:outline-none;
+  }
+  .input {
+    @apply p-2 border border-gray-primary my-3 focus:outline-none rounded;
+  }
+  .modal-header {
+    @apply my-2 flex justify-between border-b border-gray-primary pb-3;
+  }
+}
