@@ -143,6 +143,7 @@ export default function Notes() {
           editNoteModal={editNote}
           setEditNoteModal={setEditNote}
           selectNoteId={selectNoteId}
+          setSelectNoteId={setSelectNoteId}
         />
         <DeleteNote
           docId={selectNoteId}

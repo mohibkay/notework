@@ -24,9 +24,13 @@ export default function EditNote({
   editNoteModal,
   setEditNoteModal,
   selectNoteId,
+  setSelectNoteId,
 }) {
   function closeModal() {
     setEditNoteModal(false);
+    setSelectNoteId("");
+    setNoteTitle("");
+    setNote("");
   }
 
   const updateNote = () => {
@@ -60,7 +64,7 @@ export default function EditNote({
         contentLabel="Edit Note Modal"
       >
         <span className="modal-header">
-          <h2>Edit Note</h2>
+          <h2 className="text-xl font-semibold">Edit Note</h2>
           <button onClick={closeModal}>
             {" "}
             <svg
@@ -81,7 +85,7 @@ export default function EditNote({
         </span>
 
         <form onSubmit={noteUpdateHandler} className="flex flex-col">
-          <label htmlFor="title" className="text-lg">
+          <label htmlFor="title" className="text-lg -mb-1">
             Note Title
           </label>
           <input
@@ -105,7 +109,7 @@ export default function EditNote({
           </div>
 
           <button type="submit" className="button">
-            Update Notebook
+            Update Note
           </button>
         </form>
       </Modal>
