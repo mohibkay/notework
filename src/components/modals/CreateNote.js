@@ -62,7 +62,7 @@ export default function CreateNote({
         contentLabel="Create Notebook Modal"
       >
         <span className="modal-header">
-          <h2 className="text-xl">Create Note</h2>
+          <h2 className="text-xl font-semibold">Create Note</h2>
           <button onClick={closeModal} className="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function CreateNote({
         </span>
 
         <form onSubmit={noteCreateHandler} className="flex flex-col">
-          <label htmlFor="title" className="text-lg">
+          <label htmlFor="title" className="text-lg -mb-1">
             Note Title
           </label>
           <input
@@ -106,7 +106,7 @@ export default function CreateNote({
           </div>
 
           <button type="submit" className="button">
-            Create Notebook
+            Create Note
           </button>
         </form>
       </Modal>
