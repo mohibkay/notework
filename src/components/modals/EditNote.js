@@ -24,9 +24,13 @@ export default function EditNote({
   editNoteModal,
   setEditNoteModal,
   selectNoteId,
+  setSelectNoteId,
 }) {
   function closeModal() {
     setEditNoteModal(false);
+    setSelectNoteId("");
+    setNoteTitle("");
+    setNote("");
   }
 
   const updateNote = () => {
