@@ -25,7 +25,7 @@ export default function Notebooks() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col items-center lg:items-start max-w-screen-lg lg:px-0 mx-auto pb-8">
+      <main className="flex flex-col max-w-screen-lg px-4 lg:px-0 mx-auto pb-8">
         <section className="flex items-center space-x-2">
           <h2 className="font-semibold text-2xl my-6">My Notebooks</h2>
           <svg
@@ -45,7 +45,7 @@ export default function Notebooks() {
           </svg>
         </section>
 
-        <section className="grid lg:grid-cols-4 justify-items-center lg:justify-items-start lg:gap-10">
+        <section className="grid grid-cols-4 justify-items-stretch lg:justify-items-start gap-6 lg:gap-10">
           {notebooks?.length > 0
             ? notebooks?.map((notebook) => (
                 <Notebook key={notebook.docId} {...notebook} />

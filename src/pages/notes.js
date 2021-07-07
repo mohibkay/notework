@@ -50,7 +50,9 @@ export default function Notes() {
       <Navbar />
       <main className="max-w-screen-lg mx-auto mt-8 px-6 lg:px-0 mb-2">
         <span className="flex items-center space-x-3">
-          <h2 className="font-bold text-3xl mb-2">{notebook?.notebookName}</h2>
+          <h2 className="font-bold text-3xl mb-2 truncate">
+            {notebook?.notebookName}
+          </h2>
 
           {notebook && (
             <>
