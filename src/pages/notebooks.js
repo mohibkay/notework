@@ -25,8 +25,8 @@ export default function Notebooks() {
   return (
     <>
       <Navbar />
-      <div className="max-w-screen-lg mx-auto mb-12">
-        <span className="flex items-center space-x-2">
+      <main className="flex flex-col max-w-screen-lg px-4 lg:px-0 mx-auto pb-8">
+        <section className="flex items-center space-x-2">
           <h2 className="font-semibold text-2xl my-6">My Notebooks</h2>
           <svg
             onClick={() => setIsModalOpen(true)}
@@ -43,8 +43,9 @@ export default function Notebooks() {
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             />
           </svg>
-        </span>
-        <div className="grid grid-cols-4 gap-10">
+        </section>
+
+        <section className="grid grid-cols-4 justify-items-stretch lg:justify-items-start gap-6 lg:gap-10">
           {notebooks?.length > 0
             ? notebooks?.map((notebook) => (
                 <Notebook key={notebook.docId} {...notebook} />
@@ -61,8 +62,8 @@ export default function Notebooks() {
               setNotebookName={setNotebookName}
             />
           )}
-        </div>
-      </div>
+        </section>
+      </main>
     </>
   );
 }

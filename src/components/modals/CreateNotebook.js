@@ -1,18 +1,6 @@
 import Modal from "react-modal";
 import { firebase, FieldValue } from "../../lib/firebase";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "25%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function CreateNotebook({
@@ -21,16 +9,6 @@ export default function CreateNotebook({
   notebookName,
   setNotebookName,
 }) {
-  // let subtitle;
-
-  // function openModal() {
-  //   setIsModalOpen(true);
-  // }
-
-  function afterOpenModal() {
-    // subtitle.style.color = "#f00";
-  }
-
   function closeModal() {
     setIsModalOpen(false);
   }
@@ -61,14 +39,13 @@ export default function CreateNotebook({
     <div>
       <Modal
         isOpen={isModalOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal"
         contentLabel="Create Notebook Modal"
       >
         <span className="flex justify-between border-b border-gray-primary pb-3">
           <h2 className="text-xl">Create Notebook</h2>
-          <button onClick={closeModal}>
+          <button onClick={closeModal} className="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

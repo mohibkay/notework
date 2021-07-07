@@ -48,9 +48,11 @@ export default function Notes() {
   return (
     <>
       <Navbar />
-      <div className="max-w-screen-lg mx-auto mt-8 px-3 mb-2">
+      <main className="max-w-screen-lg mx-auto mt-8 px-6 lg:px-0 mb-2">
         <span className="flex items-center space-x-3">
-          <h2 className="font-bold text-3xl">{notebook?.notebookName}</h2>
+          <h2 className="font-bold text-3xl mb-2 truncate">
+            {notebook?.notebookName}
+          </h2>
 
           {notebook && (
             <>
@@ -100,57 +102,57 @@ export default function Notes() {
           deleteNotebookModal={deleteNotebookModal}
           setDeleteNotebookModal={setDeleteNotebookModal}
         />
-      </div>
 
-      <section className="max-w-screen-lg mx-auto">
-        <div className="grid grid-cols-3 gap-8 mb-12">
-          {notes?.length > 0 ? (
-            notes?.map((note) => (
-              <Note
-                key={note.docId}
-                {...note}
-                setDeleteNote={setDeleteNote}
-                setSelectNoteId={setSelectNoteId}
-                setEditNote={setEditNote}
-                setNoteTitle={setNoteTitle}
-                setNote={setNote}
-              />
-            ))
-          ) : notes ? null : (
-            <p>Loading...</p>
-          )}
+        <section className="">
+          <div className="grid lg:grid-cols-3 lg:gap-8 mb-12">
+            {notes?.length > 0 ? (
+              notes?.map((note) => (
+                <Note
+                  key={note.docId}
+                  {...note}
+                  setDeleteNote={setDeleteNote}
+                  setSelectNoteId={setSelectNoteId}
+                  setEditNote={setEditNote}
+                  setNoteTitle={setNoteTitle}
+                  setNote={setNote}
+                />
+              ))
+            ) : notes ? null : (
+              <p>Loading...</p>
+            )}
 
-          {notes && (
-            <AddNote createNote={createNote} setCreateNote={setCreateNote} />
-          )}
-        </div>
+            {notes && (
+              <AddNote createNote={createNote} setCreateNote={setCreateNote} />
+            )}
+          </div>
 
-        <CreateNote
-          noteTitle={noteTitle}
-          setNoteTitle={setNoteTitle}
-          note={note}
-          setNote={setNote}
-          createNoteModal={createNote}
-          setCreateNoteModal={setCreateNote}
-          notebookId={notebookId}
-        />
+          <CreateNote
+            noteTitle={noteTitle}
+            setNoteTitle={setNoteTitle}
+            note={note}
+            setNote={setNote}
+            createNoteModal={createNote}
+            setCreateNoteModal={setCreateNote}
+            notebookId={notebookId}
+          />
 
-        <EditNote
-          note={note}
-          setNote={setNote}
-          noteTitle={noteTitle}
-          setNoteTitle={setNoteTitle}
-          editNoteModal={editNote}
-          setEditNoteModal={setEditNote}
-          selectNoteId={selectNoteId}
-          setSelectNoteId={setSelectNoteId}
-        />
-        <DeleteNote
-          docId={selectNoteId}
-          deleteNote={deleteNote}
-          setDeleteNote={setDeleteNote}
-        />
-      </section>
+          <EditNote
+            note={note}
+            setNote={setNote}
+            noteTitle={noteTitle}
+            setNoteTitle={setNoteTitle}
+            editNoteModal={editNote}
+            setEditNoteModal={setEditNote}
+            selectNoteId={selectNoteId}
+            setSelectNoteId={setSelectNoteId}
+          />
+          <DeleteNote
+            docId={selectNoteId}
+            deleteNote={deleteNote}
+            setDeleteNote={setDeleteNote}
+          />
+        </section>
+      </main>
     </>
   );
 }

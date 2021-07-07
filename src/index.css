@@ -9,6 +9,9 @@
   .input {
     @apply p-2 border border-gray-primary my-3 focus:outline-none rounded;
   }
+  .modal {
+    @apply max-h-full w-11/12 md:w-1/4 relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-md overflow-auto focus:outline-none;
+  }
   .modal-header {
     @apply my-2 flex justify-between border-b border-gray-primary pb-3;
   }
