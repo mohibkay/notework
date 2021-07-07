@@ -2,18 +2,6 @@ import Modal from "react-modal";
 import { firebase, FieldValue } from "../../lib/firebase";
 import { useState } from "react";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "25%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function EditNotebook({
@@ -55,7 +43,7 @@ export default function EditNotebook({
       <Modal
         isOpen={editNotebook}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal"
         contentLabel="Edit Notebook Modal"
       >
         <span className="modal-header">

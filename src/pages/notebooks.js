@@ -25,7 +25,7 @@ export default function Notebooks() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col items-center lg:items-start max-w-screen-lg lg:px-0 mx-auto">
+      <main className="flex flex-col items-center lg:items-start max-w-screen-lg lg:px-0 mx-auto pb-8">
         <section className="flex items-center space-x-2">
           <h2 className="font-semibold text-2xl my-6">My Notebooks</h2>
           <svg

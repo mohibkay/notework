@@ -2,18 +2,6 @@ import Modal from "react-modal";
 import { firebase } from "../../lib/firebase";
 import { useHistory } from "react-router-dom";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "25%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function DeleteNotebook({
@@ -42,7 +30,7 @@ export default function DeleteNotebook({
       <Modal
         isOpen={deleteNotebookModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal"
         contentLabel="Delete Notebook Modal"
       >
         <span className="modal-header">

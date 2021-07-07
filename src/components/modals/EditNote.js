@@ -2,18 +2,6 @@ import Modal from "react-modal";
 import { firebase } from "../../lib/firebase";
 import ReactQuill from "react-quill";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "35%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function EditNote({
@@ -60,7 +48,7 @@ export default function EditNote({
       <Modal
         isOpen={editNoteModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal lg:w-1/3"
         contentLabel="Edit Note Modal"
       >
         <span className="modal-header">
@@ -108,7 +96,7 @@ export default function EditNote({
             />
           </div>
 
-          <button type="submit" className="button">
+          <button type="submit" className="button mt-8">
             Update Note
           </button>
         </form>

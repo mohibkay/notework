@@ -1,19 +1,6 @@
 import Modal from "react-modal";
 import parse from "html-react-parser";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "35%",
-    height: "60%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function ReadNote({ noteTitle, note, readNote, setReadNote }) {
@@ -27,7 +14,7 @@ export default function ReadNote({ noteTitle, note, readNote, setReadNote }) {
       <Modal
         isOpen={readNote}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal lg:w-1/3"
         contentLabel="Edit Note Modal"
       >
         <span className="flex items-center justify-between my- border-b border-gray-base">

@@ -2,18 +2,6 @@ import Modal from "react-modal";
 import { firebase, FieldValue } from "../../lib/firebase";
 import ReactQuill from "react-quill";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "35%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function CreateNote({
@@ -59,7 +47,7 @@ export default function CreateNote({
       <Modal
         isOpen={createNoteModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        className="modal lg:w-1/3"
         contentLabel="Create Notebook Modal"
       >
         <span className="modal-header">
@@ -106,7 +94,7 @@ export default function CreateNote({
             />
           </div>
 
-          <button type="submit" className="button">
+          <button type="submit" className="button mt-8">
             Create Note
           </button>
         </form>
