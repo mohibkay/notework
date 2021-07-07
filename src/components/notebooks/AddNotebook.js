@@ -10,7 +10,7 @@ export default function AddNotebook({
     <>
       <div
         onClick={() => setIsModalOpen(true)}
-        className="flex flex-col justify-center items-center h-72 w-60 border border-dashed border-gray-base rounded-r-2xl col-span-1 cursor-pointer"
+        className="flex flex-col justify-center items-center h-72 w-60 border border-dashed border-gray-base rounded-r-2xl col-span-4 lg:col-span-1 cursor-pointer"
       >
         <span>
           <svg

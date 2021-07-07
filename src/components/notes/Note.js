@@ -18,7 +18,7 @@ export default function Note({
     <>
       <div
         onClick={() => setReadNote(true)}
-        className="relative cursor-pointer w-full h-60 rounded-md -mb-2 border border-gray-base text-black m-2 col-span-1"
+        className="relative cursor-pointer w-full h-60 rounded-md mb-6 border border-gray-base text-black lg:m- col-span-3 lg:col-span-1"
       >
         <h2 className="p-4 bg-primary text-white text-lg rounded-t-md font-semibold">
           {noteTitle}

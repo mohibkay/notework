@@ -3,7 +3,7 @@ export default function AddNote({ setCreateNote }) {
     <>
       <div
         onClick={() => setCreateNote(true)}
-        className="flex justify-center items-center w-full h-60 rounded-md -mb-2 border border-dashed border-gray-base m-2 col-span-1 cursor-pointer"
+        className="flex justify-center items-center w-full h-60 rounded-md -mb-2 border border-dashed border-gray-base col-span-3 lg:col-span-1 cursor-pointer"
       >
         <span className="flex flex-col items-center">
           <svg
