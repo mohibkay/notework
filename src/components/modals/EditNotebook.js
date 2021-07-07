@@ -48,7 +48,7 @@ export default function EditNotebook({
       >
         <span className="modal-header">
           <h2 className="text-xl">Edit Notebook</h2>
-          <button onClick={closeModal}>
+          <button onClick={closeModal} className="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

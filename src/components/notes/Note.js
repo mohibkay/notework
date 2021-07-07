@@ -35,6 +35,7 @@ export default function Note({
               setNoteTitle(noteTitle);
               setNote(note);
             }}
+            className="focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +52,7 @@ export default function Note({
               setDeleteNote(true);
               setSelectNoteId(docId);
             }}
+            className="focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

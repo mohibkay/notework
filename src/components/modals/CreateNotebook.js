@@ -45,7 +45,7 @@ export default function CreateNotebook({
       >
         <span className="flex justify-between border-b border-gray-primary pb-3">
           <h2 className="text-xl">Create Notebook</h2>
-          <button onClick={closeModal}>
+          <button onClick={closeModal} className="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

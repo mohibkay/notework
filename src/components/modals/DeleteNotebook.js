@@ -35,7 +35,7 @@ export default function DeleteNotebook({
       >
         <span className="modal-header">
           <h2 className="text-red-500">Delete Notebook</h2>
-          <button onClick={closeModal}>
+          <button onClick={closeModal} className="focus:outline-none">
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
