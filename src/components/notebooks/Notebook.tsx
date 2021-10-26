@@ -1,6 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Notebook({ notebookName, docId }) {
+interface Props {
+  notebookName: string;
+  docId: string;
+}
+
+const Notebook: React.FC<Props> = ({ notebookName, docId }) => {
   return (
     <Link
       to={`/notebook/${docId}/${notebookName}`}
@@ -11,4 +17,6 @@ export default function Notebook({ notebookName, docId }) {
       </div>
     </Link>
   );
-}
+};
+
+export default Notebook;
