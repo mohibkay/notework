@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+
+// Components
 import Navbar from "../components/layout/Navbar";
 import CreateNote from "../components/modals/CreateNote";
 import DeleteNote from "../components/modals/DeleteNote";
@@ -8,6 +10,8 @@ import EditNote from "../components/modals/EditNote";
 import EditNotebook from "../components/modals/EditNotebook";
 import AddNote from "../components/notes/AddNote";
 import Note from "../components/notes/Note";
+
+// Utilities
 import { firebase } from "../lib/firebase";
 
 interface ParamsProps {
@@ -41,6 +45,12 @@ const Notes = () => {
   const [note, setNote] = useState("");
   const [selectNoteId, setSelectNoteId] = useState("");
 
+  const history = useHistory();
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
@@ -71,7 +81,10 @@ const Notes = () => {
       <Navbar />
       <main className="max-w-screen-lg mx-auto mt-8 px-6 lg:px-0 mb-2">
         <span className="flex items-center space-x-3">
-          <h2 className="font-bold text-3xl mb-2 truncate">
+          <h2
+            onClick={handleGoBack}
+            className="font-bold text-3xl mb-2 truncate cursor-pointer"
+          >
             {notebook?.notebookName}
           </h2>
 
