@@ -2,7 +2,7 @@ import parse from "html-react-parser";
 import { useState } from "react";
 import ReadNote from "../modals/ReadNote";
 
-interface NoteTypes {
+interface NoteProps {
   docId: string;
   noteTitle: string;
   note: string;
@@ -13,7 +13,7 @@ interface NoteTypes {
   setNote: (note: string) => void;
 }
 
-const Note: React.FC<NoteTypes> = ({
+const Note: React.FC<NoteProps> = ({
   docId,
   noteTitle,
   note,
