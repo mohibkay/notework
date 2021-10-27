@@ -2,9 +2,20 @@ import Modal from "react-modal";
 import parse from "html-react-parser";
 
 Modal.setAppElement("*");
+interface Props {
+  noteTitle: string;
+  note: string;
+  readNote: boolean;
+  setReadNote: (s: boolean) => void;
+}
 
-export default function ReadNote({ noteTitle, note, readNote, setReadNote }) {
-  const closeModal = (e) => {
+const ReadNote: React.FC<Props> = ({
+  noteTitle,
+  note,
+  readNote,
+  setReadNote,
+}) => {
+  const closeModal = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     setReadNote(false);
   };
@@ -39,4 +50,6 @@ export default function ReadNote({ noteTitle, note, readNote, setReadNote }) {
       </Modal>
     </div>
   );
-}
+};
+
+export default ReadNote;

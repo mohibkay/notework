@@ -4,7 +4,17 @@ import ReactQuill from "react-quill";
 
 Modal.setAppElement("*");
 
-export default function CreateNote({
+interface Props {
+  noteTitle: string;
+  setNoteTitle: (s: string) => void;
+  note: string;
+  setNote: (s: string) => void;
+  createNoteModal: boolean;
+  setCreateNoteModal: (s: boolean) => void;
+  notebookId: string;
+}
+
+const CreateNote: React.FC<Props> = ({
   noteTitle,
   setNoteTitle,
   note,
@@ -12,7 +22,7 @@ export default function CreateNote({
   createNoteModal,
   setCreateNoteModal,
   notebookId,
-}) {
+}) => {
   function closeModal() {
     setCreateNoteModal(false);
   }
@@ -29,12 +39,12 @@ export default function CreateNote({
       setNoteTitle("");
       setNote("");
       closeModal();
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };
 
-  const noteCreateHandler = (e) => {
+  const noteCreateHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (note && noteTitle) {
@@ -101,4 +111,6 @@ export default function CreateNote({
       </Modal>
     </div>
   );
-}
+};
+
+export default CreateNote;

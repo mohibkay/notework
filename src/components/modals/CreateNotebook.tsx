@@ -1,53 +1,57 @@
 import Modal from "react-modal";
 import { firebase, FieldValue } from "../../lib/firebase";
-import { useState } from "react";
 
 Modal.setAppElement("*");
 
-export default function EditNotebook({
-  docId,
-  editNotebook,
-  setEditNotebook,
-  name,
-}) {
-  const [notebookName, setNotebookName] = useState(() => name);
+interface Props {
+  isModalOpen: boolean;
+  setIsModalOpen: (s: boolean) => void;
+  notebookName: string;
+  setNotebookName: (s: string) => void;
+}
 
+const CreateNotebook: React.FC<Props> = ({
+  isModalOpen,
+  setIsModalOpen,
+  notebookName,
+  setNotebookName,
+}) => {
   function closeModal() {
-    setEditNotebook(false);
+    setIsModalOpen(false);
   }
 
-  const EditNotebook = () => {
+  const createNotebook = () => {
     try {
-      firebase.firestore().collection("notebooks").doc(docId).update({
+      firebase.firestore().collection("notebooks").add({
         notebookName,
         userId: "fdklaadfawewzc",
         createdAt: FieldValue.serverTimestamp(),
       });
       setNotebookName("");
-      setEditNotebook(false);
-    } catch (error) {
+      setIsModalOpen(false);
+    } catch (error: any) {
       console.log(error.message);
     }
   };
 
-  const notebookEditHandler = (e) => {
+  const notebookCreateHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (notebookName) {
-      EditNotebook();
+      createNotebook();
     }
   };
 
   return (
     <div>
       <Modal
-        isOpen={editNotebook}
+        isOpen={isModalOpen}
         onRequestClose={closeModal}
         className="modal"
-        contentLabel="Edit Notebook Modal"
+        contentLabel="Create Notebook Modal"
       >
-        <span className="modal-header">
-          <h2 className="text-xl">Edit Notebook</h2>
+        <span className="flex justify-between border-b border-gray-primary pb-3">
+          <h2 className="text-xl">Create Notebook</h2>
           <button onClick={closeModal} className="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +70,7 @@ export default function EditNotebook({
           </button>
         </span>
 
-        <form onSubmit={notebookEditHandler} className="flex flex-col my-2">
+        <form onSubmit={notebookCreateHandler} className="flex flex-col my-2">
           <input
             type="text"
             placeholder="Enter notebook name"
@@ -75,11 +79,13 @@ export default function EditNotebook({
             onChange={({ target }) => setNotebookName(target.value)}
           />
 
-          <button className="button" type="submit">
-            Edit Notebook
+          <button type="submit" className="button">
+            Create Notebook
           </button>
         </form>
       </Modal>
     </div>
   );
-}
+};
+
+export default CreateNotebook;
