@@ -1,18 +1,32 @@
 import Modal from "react-modal";
 import { firebase } from "../../lib/firebase";
+import { useHistory } from "react-router-dom";
 
 Modal.setAppElement("*");
 
-export default function DeleteNote({ docId, deleteNote, setDeleteNote }) {
+interface Props {
+  docId: string;
+  deleteNotebookModal: boolean;
+  setDeleteNotebookModal: (s: boolean) => void;
+}
+
+const DeleteNotebook: React.FC<Props> = ({
+  docId,
+  deleteNotebookModal,
+  setDeleteNotebookModal,
+}) => {
+  const history = useHistory();
+
   function closeModal() {
-    setDeleteNote(false);
+    setDeleteNotebookModal(false);
   }
 
-  const DeleteNote = () => {
+  const DeleteNotebook = () => {
     try {
-      firebase.firestore().collection("notes").doc(docId).delete();
+      firebase.firestore().collection("notebooks").doc(docId).delete();
+      history.push("/notebook");
       closeModal();
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };
@@ -20,13 +34,13 @@ export default function DeleteNote({ docId, deleteNote, setDeleteNote }) {
   return (
     <div>
       <Modal
-        isOpen={deleteNote}
+        isOpen={deleteNotebookModal}
         onRequestClose={closeModal}
         className="modal"
         contentLabel="Delete Notebook Modal"
       >
         <span className="modal-header">
-          <h2 className="text-xl">Delete Note</h2>
+          <h2 className="text-red-500">Delete Notebook</h2>
           <button onClick={closeModal} className="focus:outline-none">
             {" "}
             <svg
@@ -47,13 +61,17 @@ export default function DeleteNote({ docId, deleteNote, setDeleteNote }) {
         </span>
 
         <div>
-          <p className="text-lg">Are you sure you want to delete the note?</p>
+          <p className="text-lg">
+            Are you sure you want to delete the notebook?
+          </p>
 
-          <button onClick={DeleteNote} className="button w-full mt-5">
+          <button onClick={DeleteNotebook} className="button w-full mt-5">
             Delete
           </button>
         </div>
       </Modal>
     </div>
   );
-}
+};
+
+export default DeleteNotebook;

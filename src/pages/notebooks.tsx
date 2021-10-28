@@ -4,8 +4,13 @@ import AddNotebook from "../components/notebooks/AddNotebook";
 import Notebook from "../components/notebooks/Notebook";
 import { firebase } from "../lib/firebase";
 
-export default function Notebooks() {
-  const [notebooks, setNotebooks] = useState(null);
+interface notebooksProps {
+  docId: string;
+  notebookName: string;
+}
+
+const Notebooks = () => {
+  const [notebooks, setNotebooks] = useState<notebooksProps[]>();
   const [notebookName, setNotebookName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,6 +20,7 @@ export default function Notebooks() {
       .collection("notebooks")
       .onSnapshot((snapshot) =>
         setNotebooks(
+          // @ts-ignore
           snapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id }))
         )
       );
@@ -46,12 +52,17 @@ export default function Notebooks() {
         </section>
 
         <section className="grid grid-cols-4 justify-items-stretch lg:justify-items-start gap-6 lg:gap-10">
-          {notebooks?.length > 0
-            ? notebooks?.map((notebook) => (
-                <Notebook key={notebook.docId} {...notebook} />
-              ))
-            : notebooks
-            ? null
+          {notebooks
+            ? notebooks?.map((notebook) => {
+                const { notebookName, docId } = notebook;
+                return (
+                  <Notebook
+                    key={docId}
+                    notebookName={notebookName}
+                    docId={docId}
+                  />
+                );
+              })
             : "Loading........"}
 
           {notebooks && (
@@ -66,4 +77,6 @@ export default function Notebooks() {
       </main>
     </>
   );
-}
+};
+
+export default Notebooks;

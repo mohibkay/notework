@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+
+// Components
 import Navbar from "../components/layout/Navbar";
 import CreateNote from "../components/modals/CreateNote";
 import DeleteNote from "../components/modals/DeleteNote";
@@ -8,21 +10,46 @@ import EditNote from "../components/modals/EditNote";
 import EditNotebook from "../components/modals/EditNotebook";
 import AddNote from "../components/notes/AddNote";
 import Note from "../components/notes/Note";
+
+// Utilities
 import { firebase } from "../lib/firebase";
 
-export default function Notes() {
-  const [notebook, setNotebook] = useState("");
+interface ParamsProps {
+  notebookId: string;
+  notebookName: string;
+}
+
+interface NotebookProps {
+  docId: string;
+  notebookName?: string;
+}
+
+interface NoteProps {
+  docId: string;
+  noteTitle: string;
+  note: string;
+  notebookId: string;
+}
+
+const Notes = () => {
+  const [notebook, setNotebook] = useState<NotebookProps>();
   const [deleteNotebookModal, setDeleteNotebookModal] = useState(false);
   const [editNotebook, setEditNotebook] = useState(false);
-  const { notebookId, notebookName } = useParams();
+  const { notebookId, notebookName } = useParams<ParamsProps>();
 
-  const [notes, setNotes] = useState(null);
+  const [notes, setNotes] = useState<NoteProps[]>();
   const [createNote, setCreateNote] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [editNote, setEditNote] = useState(false);
   const [noteTitle, setNoteTitle] = useState("");
   const [note, setNote] = useState("");
   const [selectNoteId, setSelectNoteId] = useState("");
+
+  const history = useHistory();
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -40,17 +67,24 @@ export default function Notes() {
       .collection("notes")
       .where("notebookId", "==", notebookId)
       .onSnapshot((snapshot) =>
+        // @ts-ignore
         setNotes(snapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id })))
       );
     return () => unsubscribe();
   }, [notebookId]);
+
+  console.log("note");
+  console.log(notes);
 
   return (
     <>
       <Navbar />
       <main className="max-w-screen-lg mx-auto mt-8 px-6 lg:px-0 mb-2">
         <span className="flex items-center space-x-3">
-          <h2 className="font-bold text-3xl mb-2 truncate">
+          <h2
+            onClick={handleGoBack}
+            className="font-bold text-3xl mb-2 truncate cursor-pointer"
+          >
             {notebook?.notebookName}
           </h2>
 
@@ -90,40 +124,47 @@ export default function Notes() {
           )}
         </span>
 
-        <EditNotebook
-          docId={notebook.docId}
-          editNotebook={editNotebook}
-          setEditNotebook={setEditNotebook}
-          name={notebookName}
-        />
+        {notebook ? (
+          <>
+            <EditNotebook
+              docId={notebook.docId}
+              editNotebook={editNotebook}
+              setEditNotebook={setEditNotebook}
+              name={notebookName}
+            />
 
-        <DeleteNotebook
-          docId={notebook.docId}
-          deleteNotebookModal={deleteNotebookModal}
-          setDeleteNotebookModal={setDeleteNotebookModal}
-        />
+            <DeleteNotebook
+              docId={notebook.docId}
+              deleteNotebookModal={deleteNotebookModal}
+              setDeleteNotebookModal={setDeleteNotebookModal}
+            />
+          </>
+        ) : null}
 
         <section className="">
           <div className="grid lg:grid-cols-3 lg:gap-8 mb-12">
-            {notes?.length > 0 ? (
-              notes?.map((note) => (
-                <Note
-                  key={note.docId}
-                  {...note}
-                  setDeleteNote={setDeleteNote}
-                  setSelectNoteId={setSelectNoteId}
-                  setEditNote={setEditNote}
-                  setNoteTitle={setNoteTitle}
-                  setNote={setNote}
-                />
-              ))
-            ) : notes ? null : (
+            {notes ? (
+              notes?.map((noteItem) => {
+                const { noteTitle, note, docId } = noteItem;
+                return (
+                  <Note
+                    key={docId}
+                    docId={docId}
+                    note={note}
+                    noteTitle={noteTitle}
+                    setDeleteNote={setDeleteNote}
+                    setSelectNoteId={setSelectNoteId}
+                    setEditNote={setEditNote}
+                    setNoteTitle={setNoteTitle}
+                    setNote={setNote}
+                  />
+                );
+              })
+            ) : (
               <p>Loading...</p>
             )}
 
-            {notes && (
-              <AddNote createNote={createNote} setCreateNote={setCreateNote} />
-            )}
+            {notes && <AddNote setCreateNote={setCreateNote} />}
           </div>
 
           <CreateNote
@@ -155,4 +196,6 @@ export default function Notes() {
       </main>
     </>
   );
-}
+};
+
+export default Notes;

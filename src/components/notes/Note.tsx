@@ -2,7 +2,18 @@ import parse from "html-react-parser";
 import { useState } from "react";
 import ReadNote from "../modals/ReadNote";
 
-export default function Note({
+interface NoteProps {
+  docId: string;
+  noteTitle: string;
+  note: string;
+  setDeleteNote: (s: boolean) => void;
+  setEditNote: (s: boolean) => void;
+  setSelectNoteId: (docId: string) => void;
+  setNoteTitle: (noteTitle: string) => void;
+  setNote: (note: string) => void;
+}
+
+const Note: React.FC<NoteProps> = ({
   docId,
   noteTitle,
   note,
@@ -11,7 +22,7 @@ export default function Note({
   setSelectNoteId,
   setNoteTitle,
   setNote,
-}) {
+}) => {
   const [readNote, setReadNote] = useState(false);
 
   return (
@@ -79,4 +90,6 @@ export default function Note({
       </div>
     </>
   );
-}
+};
+
+export default Note;

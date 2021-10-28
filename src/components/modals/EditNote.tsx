@@ -4,7 +4,18 @@ import ReactQuill from "react-quill";
 
 Modal.setAppElement("*");
 
-export default function EditNote({
+interface Props {
+  noteTitle: string;
+  setNoteTitle: (s: string) => void;
+  note: string;
+  setNote: (s: string) => void;
+  editNoteModal: boolean;
+  setEditNoteModal: (s: boolean) => void;
+  selectNoteId: string;
+  setSelectNoteId: (s: string) => void;
+}
+
+const EditNote: React.FC<Props> = ({
   noteTitle,
   setNoteTitle,
   note,
@@ -13,7 +24,7 @@ export default function EditNote({
   setEditNoteModal,
   selectNoteId,
   setSelectNoteId,
-}) {
+}) => {
   function closeModal() {
     setEditNoteModal(false);
     setSelectNoteId("");
@@ -30,12 +41,12 @@ export default function EditNote({
       setNoteTitle("");
       setNote("");
       closeModal();
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };
 
-  const noteUpdateHandler = (e) => {
+  const noteUpdateHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (note && noteTitle) {
@@ -103,4 +114,6 @@ export default function EditNote({
       </Modal>
     </div>
   );
-}
+};
+
+export default EditNote;

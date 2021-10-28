@@ -1,26 +1,24 @@
 import Modal from "react-modal";
 import { firebase } from "../../lib/firebase";
-import { useHistory } from "react-router-dom";
 
 Modal.setAppElement("*");
 
-export default function DeleteNotebook({
-  docId,
-  deleteNotebookModal,
-  setDeleteNotebookModal,
-}) {
-  const history = useHistory();
+interface Props {
+  docId: string;
+  deleteNote: boolean;
+  setDeleteNote: (s: boolean) => void;
+}
 
+const DeleteNote: React.FC<Props> = ({ docId, deleteNote, setDeleteNote }) => {
   function closeModal() {
-    setDeleteNotebookModal(false);
+    setDeleteNote(false);
   }
 
-  const DeleteNotebook = () => {
+  const DeleteNote = () => {
     try {
-      firebase.firestore().collection("notebooks").doc(docId).delete();
-      history.push("/notebook");
+      firebase.firestore().collection("notes").doc(docId).delete();
       closeModal();
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };
@@ -28,13 +26,13 @@ export default function DeleteNotebook({
   return (
     <div>
       <Modal
-        isOpen={deleteNotebookModal}
+        isOpen={deleteNote}
         onRequestClose={closeModal}
         className="modal"
         contentLabel="Delete Notebook Modal"
       >
         <span className="modal-header">
-          <h2 className="text-red-500">Delete Notebook</h2>
+          <h2 className="text-xl">Delete Note</h2>
           <button onClick={closeModal} className="focus:outline-none">
             {" "}
             <svg
@@ -55,15 +53,15 @@ export default function DeleteNotebook({
         </span>
 
         <div>
-          <p className="text-lg">
-            Are you sure you want to delete the notebook?
-          </p>
+          <p className="text-lg">Are you sure you want to delete the note?</p>
 
-          <button onClick={DeleteNotebook} className="button w-full mt-5">
+          <button onClick={DeleteNote} className="button w-full mt-5">
             Delete
           </button>
         </div>
       </Modal>
     </div>
   );
-}
+};
+
+export default DeleteNote;

@@ -1,4 +1,8 @@
-export default function AddNote({ setCreateNote }) {
+interface Props {
+  setCreateNote: (s: boolean) => void;
+}
+
+const AddNote: React.FC<Props> = ({ setCreateNote }) => {
   return (
     <>
       <div
@@ -25,4 +29,6 @@ export default function AddNote({ setCreateNote }) {
       </div>
     </>
   );
-}
+};
+
+export default AddNote;

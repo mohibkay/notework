@@ -1,11 +1,18 @@
 import CreateNotebook from "../modals/CreateNotebook";
 
-export default function AddNotebook({
+interface Props {
+  isModalOpen: boolean;
+  setIsModalOpen: (s: boolean) => void;
+  notebookName: string;
+  setNotebookName: (s: string) => void;
+}
+
+const AddNotebook: React.FC<Props> = ({
   isModalOpen,
   setIsModalOpen,
   notebookName,
   setNotebookName,
-}) {
+}) => {
   return (
     <>
       <div
@@ -38,4 +45,6 @@ export default function AddNotebook({
       />
     </>
   );
-}
+};
+
+export default AddNotebook;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+const Navbar: React.FC = () => {
   return (
     <header className="bg-maroon text-white">
       <nav className="flex justify-between h-12 items-center max-w-screen-lg mx-auto">
@@ -14,4 +14,6 @@ export default function Navbar() {
       </nav>
     </header>
   );
-}
+};
+
+export default Navbar;
